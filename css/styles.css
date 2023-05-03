@@ -1,0 +1,310 @@
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400&family=Lato&display=swap");
+
+:root {
+  --primary-color: #1e1d1e;
+  --secondary-color: #ccc9b8;
+  --dark-color: #1e1d1e;
+  --light-color: #f3eee8;
+  --accent-color: #041c3e;
+  --accent-dark: #fff;
+  --radius: 10px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inconsolata", monospace;
+  font-weight: 400;
+  line-height: 1.5;
+  font-size: 17px;
+  cursor: default;
+}
+
+img {
+  width: 100%;
+}
+h1,
+h2 {
+  margin: 10px 0;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Navbar */
+
+.home {
+  height: 700px;
+  background-image: url(../images/bg.jpg);
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  width: 100%;
+  padding-top: 10px;
+}
+.logo {
+  font-size: xx-large;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--accent-color);
+}
+
+header {
+  height: 70px;
+  position: relative;
+}
+
+.home .flex {
+  justify-content: space-between;
+  align-items: center;
+  gap: 100px;
+}
+
+/* .home .container{
+  position: relative;
+} */
+
+.home .search-input {
+  flex: 1;
+  border: none;
+  background-color: var(--accent-dark);
+  padding: 8px 16px;
+  border-radius: var(--radius);
+}
+
+.search {
+  padding: 3px 0px;
+  font-family: inherit;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  margin-left: 5px;
+  width: 95%;
+}
+
+.icon {
+  font-size: 1.4rem;
+  margin-top: 6px;
+  cursor: pointer;
+  color: var(--accent-color);
+  background: #fff;
+  border-radius: 50%;
+  padding: 9px 11px;
+}
+
+/* Drop down */
+
+.drop-down-wrap {
+  position: absolute;
+  top: 100%;
+  right: 5%;
+  width: 280px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  max-height: 0px;
+  transition: max-height 0.5s ease-in;
+}
+
+.drop-down-wrap.open{
+  max-height: 400px;
+}
+
+.drop-user-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 10px;
+}
+
+.drop-user-info span {
+  color: green;
+  font-weight: bold;
+}
+
+.drop-down {
+  background-color: #fcfaf9;
+  padding: 20px;
+  /* margin: 10px; */
+  border-radius: var(--radius);
+ 
+}
+
+.drop-down-link{
+  display: flex;
+  align-items: center;
+  transition: transform .1s ease-in;
+}
+
+.drop-down-link p{
+  flex:1;
+  padding-left: 5px;
+  font-weight: 400;
+  color: var(--accent-color);
+  opacity: 0.95;
+  padding-top: 5px;
+}
+
+.drop-down-link:hover{
+  transform: translateX(5px);
+}
+
+.drop-down-wrap .fa-angle-right{
+  color: var(--accent-color);
+}
+
+.navbar {
+  width: 600px;
+  margin: auto;
+}
+
+.navbar a {
+  color: var(--dark-color);
+  /* font-weight: bold; */
+  font-size: 18px;
+  padding: 5px 0;
+}
+
+.navbar a:hover {
+  border-bottom: 2px solid var(--accent-color);
+}
+
+/* Latest Books */
+
+.books__heading {
+  letter-spacing: 5px;
+  font-size: 3rem;
+  color: var(--accent-color);
+}
+
+.books .book-item {
+  height: 365px;
+  width: 230px;
+  overflow: hidden;
+  background-color: #fcfaf9;
+  border-radius: 6px;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+}
+
+.books .book-item:hover {
+  transform: scale(1.02);
+}
+
+.book-item img {
+  width: inherit;
+  height: 250px;
+  cursor: pointer;
+  transition: transform 0.4s ease-in;
+}
+
+.book-item img:hover {
+  transform: scale(1.015);
+}
+
+.book-item__text {
+  margin-top: 3px;
+}
+
+.book-item__text h3 {
+  line-height: 1;
+}
+
+.book-item__text p {
+  opacity: 0.8;
+}
+
+.activity {
+  background-color: #c9c9c7;
+  color: var(--accent-color);
+}
+
+.books i {
+  /* color: var(--accent-color); */
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.activity.flex {
+  justify-content: space-between;
+  padding: 5px 35px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 36px;
+}
+
+.like {
+  position: relative;
+}
+
+.like p {
+  display: inline-block;
+  position: absolute;
+  margin-left: 4px;
+  bottom: 1px;
+  font-weight: 400;
+  font-size: 1.2rem;
+  /* color: var(--secondary-color); */
+}
+
+/* Trending Books */
+
+.trending {
+  padding-top: 50px;
+}
+
+/* Recommended Books */
+
+.recommended {
+  padding: 50px 0;
+}
+
+/* Footer */
+
+footer .flex {
+  justify-content: space-between;
+  color: #fff;
+}
+
+footer .logo {
+  color: var(--secondary-color);
+}
+
+footer .social a {
+  margin: 0 10px;
+}
+
+footer ul a:hover {
+  color: var(--secondary-color);
+}
+
+.fa-github:hover {
+  color: #000000;
+}
+
+.fa-facebook:hover {
+  color: #1773ea;
+}
+
+.fa-instagram:hover {
+  color: #b32e87;
+}
+
+.fa-twitter:hover {
+  color: #1c9cea;
+}

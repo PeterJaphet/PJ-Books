@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/custom.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/bookDetails.css" />
+    <title>User Profile</title>
+  </head>
+  <body>
+    <div class="home">
+      <header>
+        <div class="container flex">
+          <div class="logo">PJ BOOKS</div>
+          <div class="search-input shadow">
+            <form class="">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input
+                type="text"
+                name="book-search"
+                class="search"
+                placeholder="Search"
+              />
+            </form>
+          </div>
+          <div class="user">
+            <i class="fa-solid fa-user icon"></i>
+          </div>
+
+          <div class="drop-down-wrap shadow">
+            <div class="drop-down"></div>
+          </div>
+        </div>
+      </header>
+    </div>
+
+      <div class="book-details bg-light py-3">
+        <div class="container flex">
+          <div class="book-image">
+            <img src="./images/4.jpg" alt="" class="book-img"/>
+          </div>
+          <div class="book-detail">
+
+            <div class="book-info">
+              <h1 class="book-title">My Book Cover</h1>
+              <p>By <span class="book-author">PJ Jackson</span></p>
+              <p class="py-1">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum quidem itaque, nihil necessitatibus quas perferendis eaque officia fugit animi velit temporibus amet quisquam deleniti ratione deserunt eligendi nesciunt omnis illo similique aperiam quos doloremque quaerat cum. Labore, quos illo. Incidunt!</p>
+            </div>
+            <div class="book-stats py-1">
+              <h4>Category :  <span class="stat">Public</span></h4>
+              <h4>Likes :<span class="stat">70</span></h4>
+              <h4>Saves :<span class="stat">23</span></h4>
+            </div>
+            <div class="book-btn py-1">
+              <span class="like btn btn-outline">Like <i class='fa-regular fa-heart'></i></span>
+              <span class="save btn btn-outline">Save <i class='fa-regular fa-bookmark'></i></span>
+              <span class="borrow btn btn-outline">Borrow <i class="fa-solid fa-flag-swallowtail"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+
+    <footer class="bg-dark py-5">
+      <div class="container flex">
+        <div>
+          <a href="index.html"><h1 class="logo">PJ BOOKS</h1></a>
+          <p class="">PJ STUDIO &copy; 2023</p>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Latest</a></li>
+            <li><a href="#">Trending</a></li>
+            <li><a href="#">Recommended</a></li>
+          </ul>
+        </nav>
+        <div class="social">
+          <a href="#"><i class="fab fa-github fa-2x"></i></a>
+          <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+          <a href="#"><i class="fab fa-instagram fa-2x"></i></a>
+          <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./js/service.js"></script>
+  </body>
+</html>

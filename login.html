@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/custom.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/login.css" />
+    <title>User Profile</title>
+  </head>
+  <body>
+    <div class="login-image">
+      <div class="logo">PJ BOOKS.</div>
+    </div>
+    <div class="login-details">
+      <form id="login-form">
+        <h1 class="my-4 lg">Login</h1>
+        <div class="form-control">
+          <p class="error-msg">Email</p>
+          <input
+            type="email"
+            name="username"
+            class="input-control email"
+            placeholder="Enter Email"
+          />
+        </div>
+        <div class="form-control">
+          <p class="error-msg">Password</p>
+          <input
+            type="password"
+            name="password"
+            class="input-control password"
+            placeholder="Enter Password"
+          />
+        </div>
+        <div class="remember">
+          <input type="checkbox" />
+          <p>Remember Password</p>
+        </div>
+        <input type="submit" value="Login" class="btn" />
+        <div class="my-3">
+          <p>Don't have an account?</p>
+          <a href="register.html">Sign up</a>
+        </div>
+      </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha256.js"></script>
+    <script src="./js/login.js"></script>
+  </body>
+</html>

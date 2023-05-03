@@ -1,0 +1,111 @@
+body {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+}
+
+/* Login Image */
+
+.login-image {
+  position: relative;
+  background-image: url(../images/bg-login.jpg);
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.logo {
+  font-size: 3rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--accent-color);
+  position: absolute;
+  top: 30px;
+  left: 70px;
+}
+
+/* Login details */
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.login-details {
+  background-color: #f6f6f2;
+  height: 100%;
+  display: flex;
+}
+
+.login-details form {
+  width: 400px;
+  margin: auto;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0 0;
+}
+
+.input-control {
+  outline: none;
+  padding: 8px 12px;
+  font-family: inherit;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #c9c9c7;
+}
+
+.input-control:focus {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.input-control.error {
+  border: 1px solid red;
+  box-shadow: -2px 1px 7px 2px rgba(247, 103, 103, 0.1);
+  -webkit-box-shadow: -2px 1px 7px 2px rgba(247, 103, 103, 0.1);
+  -moz-box-shadow: -2px 1px 7px 2px rgba(247, 103, 103, 0.1);
+}
+
+.error-msg {
+  font-size: 18px;
+  /* font-weight: bold; */
+}
+.error-msg.error {
+  color: red;
+  font-size: 15px;
+}
+
+.login-details .btn {
+  width: 100%;
+  margin-top: 30px;
+  transition: All 0.15s ease-in;
+}
+
+.remember p {
+  display: inline-block;
+  margin-left: 4px;
+  opacity: 0.7;
+}
+
+.remember {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.my-3 p {
+  display: inline-block;
+  opacity: 0.8;
+}
+
+.my-3 a {
+  color: var(--accent-color);
+  font-weight: bold;
+}
