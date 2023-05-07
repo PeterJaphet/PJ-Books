@@ -1,6 +1,7 @@
 const url = "http://localhost:3000";
 
 const addBtn = document.querySelector(".form-active");
+const requestBtn = document.querySelector("#request");
 const form = document.querySelector("#add-book");
 const title = document.querySelector(".title");
 const author = document.querySelector(".author-name");
@@ -12,6 +13,7 @@ const userInfoContainer = document.querySelector(".user-info");
 const userBooksContainer = document.querySelector(
   ".user-books .books-container"
 );
+const bookRequestContainer = document.querySelector(".books.books-request");
 const clearText = document.querySelectorAll("#add-book input[type=text]");
 const clearFile = document.querySelectorAll("#add-book input[type=file]");
 const cat = document.querySelectorAll(".user-books span");
@@ -47,9 +49,9 @@ const renderUserInfo = async () => {
   const books = await res.json();
   let saves = 0;
 
-  books.forEach((book)=>{
-    saves+=book.saves.length;
-  })
+  books.forEach((book) => {
+    saves += book.saves.length;
+  });
 
   let template = `
     <div class="user-profile b flex shadow">
@@ -89,6 +91,16 @@ const renderUserInfo = async () => {
   userInfoContainer.innerHTML = template;
 };
 
+//render Filter options
+
+const renderFilter = () =>{
+ if(user.type!==1){
+ addBtn.style.display = "none";
+ requestBtn.style.display="none";
+ }
+
+}
+
 // render books
 const renderUserBooks = async (id) => {
   if (id == "books") {
@@ -127,10 +139,56 @@ const renderUserBooks = async (id) => {
     });
 
     userBooksContainer.innerHTML = template;
-  } else if (id == "saved") {
+  } 
+  
+  if (id == "saved") {
     renderUserSavedBooks();
   }
+
+  if(id == "request"){
+    renderRequests();
+  }
+  
 };
+
+
+const renderRequests = async ()=>{
+  uri = `http://localhost:3000/borrow?authorId=${userId}`;
+  
+  const res = await fetch(uri);
+  const users = await res.json();
+
+  const filteredUsers = users.filter(user=> user.borrow.some(borrow=> borrow.authorId===userId && borrow.status==="pending")).flat();
+
+  let template = "";
+  console.log(filteredUsers)
+
+  filteredUsers.forEach(user=>{
+    console.log(user.borrow.map((id)=>console.log(id)));
+    template += `
+    <div class="card">
+    <span>${user.firstName}  ${user.lastName} wants to borrow !</span>
+    <span class="span-link" onclick="viewRequest(${user.borrow.id});">View request</span>
+  </div>
+    
+    `})
+
+    userBooksContainer.innerHTML ="";
+
+    bookRequestContainer.innerHTML = template;
+    bookRequestContainer.style.marginTop = "-2rem";
+
+}
+
+const viewRequest = async(id)=>{
+  uri = `http://localhost:3000/users?_embed=borrow`;
+  const res = await fetch(uri);
+  const users = await res.json();
+  const filteredUser = users.filter(user=> user.borrow.some(borrow=> borrow.id===3)).flat();
+
+  console.log(id,filteredUser);
+
+}
 
 const renderUserSavedBooks = async () => {
   uri = `http://localhost:3000/books`;
@@ -276,17 +334,15 @@ addBtn.addEventListener("click", () => {
       addBook(BookDetails)
         .then((valid) => {
           if (valid) {
-
             alert("Book Added!");
-            clearText.forEach((text)=>{
-              text.value="";
-            })
-            clearFile.forEach((input)=>{
-              input.value="";
-            })
-            description.value="";
+            clearText.forEach((text) => {
+              text.value = "";
+            });
+            clearFile.forEach((input) => {
+              input.value = "";
+            });
+            description.value = "";
             renderUserComponents();
-            
           }
         })
         .catch((error) => {
@@ -425,7 +481,9 @@ const addBook = async (bookData) => {
 };
 
 const renderUserComponents = () => {
+
   renderUserInfo();
+  renderFilter();
   renderUserBooks("books");
 };
 

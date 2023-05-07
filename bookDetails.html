@@ -43,32 +43,35 @@
       </header>
     </div>
 
-      <div class="book-details bg-light py-3">
-        <div class="container flex">
-          <div class="book-image">
-            <img src="./images/4.jpg" alt="" class="book-img"/>
-          </div>
-          <div class="book-detail">
+    <div class="book-details bg-light py-3"></div>
 
-            <div class="book-info">
-              <h1 class="book-title">My Book Cover</h1>
-              <p>By <span class="book-author">PJ Jackson</span></p>
-              <p class="py-1">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum quidem itaque, nihil necessitatibus quas perferendis eaque officia fugit animi velit temporibus amet quisquam deleniti ratione deserunt eligendi nesciunt omnis illo similique aperiam quos doloremque quaerat cum. Labore, quos illo. Incidunt!</p>
-            </div>
-            <div class="book-stats py-1">
-              <h4>Category :  <span class="stat">Public</span></h4>
-              <h4>Likes :<span class="stat">70</span></h4>
-              <h4>Saves :<span class="stat">23</span></h4>
-            </div>
-            <div class="book-btn py-1">
-              <span class="like btn btn-outline">Like <i class='fa-regular fa-heart'></i></span>
-              <span class="save btn btn-outline">Save <i class='fa-regular fa-bookmark'></i></span>
-              <span class="borrow btn btn-outline">Borrow <i class="fa-solid fa-flag-swallowtail"></i></span>
-            </div>
-          </div>
+    <div class="modal card">
+      <form id="book-request">
+        <h1 class="my-2 lg">Request Book</h1>
+
+        <div class="form-control">
+          <p class="error-msg">Reason</p>
+          <textarea
+            name="textarea"
+            class="input-control reason"
+            rows="3"
+            cols="30"
+          ></textarea>
         </div>
-      </div>
- 
+
+        <div class="form-control">
+          <p class="error-msg">Return Date</p>
+          <input
+            type="date"
+            name="return"
+            class="input-control return-date"
+            placeholder=""
+          />
+        </div>
+
+        <input type="submit" value="Request" class="btn my-1" />
+      </form>
+    </div>
 
     <footer class="bg-dark py-5">
       <div class="container flex">
@@ -93,6 +96,7 @@
       </div>
     </footer>
 
-    <script src="./js/service.js"></script>
+    <div id="overlay" class=""></div>
+    <script src="./js/bookDetails.js"></script>
   </body>
 </html>

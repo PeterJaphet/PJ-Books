@@ -16,24 +16,32 @@ header{
 .book-details{
 
 height: 700px;
+
 }
 
 .book-details .flex{
     justify-content:initial;
-    width: 100%;
+    width: 986px;
    overflow: hidden;
-   gap: 30px;
+   gap: 50px;
    align-items: center;
    height: 100%;
+
 }
 
 .book-details .book-img{
     height: 500px;
     width: 350px;
+    border-radius: 7px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
 }
 
 
 /* Book Detail */
+
+.book-detail{
+    flex:1;
+}
 
 .book-info{
 width: 60%;
@@ -42,13 +50,25 @@ width: 60%;
 .book-details .book-title{
     line-height: 1.1;
     margin :0;
+    text-transform: capitalize;
 }
 
 .book-details .book-author{
     opacity: 0.9;
     font-style: italic;
+    text-transform: capitalize;
 }
 
 .stat{
     font-weight: 400;
+}
+
+/* FORM */
+
+#book-request{
+
+}
+
+.modal{
+    width:500px;
 }

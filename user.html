@@ -32,12 +32,76 @@
               <span id="books" class="active">Books</span>
               <span id="saved">Saved</span>
               <span id="borrow">Borrowed</span>
+              <span id="request" class="">Requests</span>
             </div>
             <div class="form-active btn btn-outline">Add Book</div>
           </div>
 
           <div class="books books-container grid-3 my-3">
             <!-- Inject User Book -->
+          </div>
+
+          <div class="books books-request">
+           
+          </div>
+
+          <div class="modal card">
+            <form id="pending-request">
+              <h1 class="my-2 md">Pending request</h1>
+      
+              <div class="form-control">
+                <p class="error-msg">Name</p>
+                <input
+                  type="text"
+                  name="title"
+                  class="input-control name"
+                  placeholder=""
+                  disabled
+                />
+              </div>
+      
+              <div class="form-control">
+                <p class="error-msg">Book's Name</p>
+                <input
+                  type="text"
+                  name="author-name"
+                  class="input-control book-name"
+                  placeholder=""
+                  disabled
+                />
+              </div>
+              <div class="form-control-2">
+              <div class="form-control">
+                <p class="error-msg">Request Date</p>
+                <input
+                  type="date"
+                  class="input-control request-date"
+                  disabled
+                />
+              </div>
+      
+              <div class="form-control">
+                <p class="error-msg">Return Date</p>
+                <input
+                type="date"
+                class="input-control return-date"
+                disabled
+                />
+              </div>
+            </div>
+              <div class="form-control">
+                <p class="error-msg">Reason</p>
+                <textarea
+                  name="textarea"
+                  class="input-control desc"
+                  rows="5"
+                  cols="30"
+                  disabled
+                ></textarea>
+              </div>
+              <button  class="btn btn-outline my-1" >Approve <i class="fa-solid fa-check"></i></button> 
+              <button  class="btn my-1" >Reject <i class="fa-solid fa-times"></i></button> 
+             
           </div>
           
         </div>
@@ -111,35 +175,4 @@
   </body>
 </html>
 
-<!-- 
 
- 
-<div class="book-item shadow">
-  <img src="./images/1.jpg" alt="" />
-  <div class="book-item__text text-center">
-    <h3>The Legend of the seeker</h3>
-    <p>Hello J. love</p>
-  </div>
-</div>
-<div class="book-item shadow">
-  <img src="./images/1.jpg" alt="" />
-  <div class="book-item__text text-center">
-    <h3>The Legend of the seeker</h3>
-    <p>Hello J. love</p>
-  </div>
-</div>
-
-<div class="book-item shadow">
-  <img src="${book.uploadUrl}" alt="" />
-  <div class="book-item__text text-center">
-    <h3>${book.title}</h3>
-    <p>${book.author}</p>
-    <div class="activity flex">
-      <div class="like">
-        <i class="fa-regular fa-heart"></i>
-        <p>${books.likes ? book.likes.length : 0}</p>
-      </div>
-      <i class="fa-regular fa-bookmark"></i>
-    </div>  
-    </div>
-    </div> -->
