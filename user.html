@@ -42,68 +42,12 @@
           </div>
 
           <div class="books books-request">
-           
+            <!-- Inject User Book request-->
           </div>
 
-          <div class="modal card">
-            <form id="pending-request">
-              <h1 class="my-2 md">Pending request</h1>
-      
-              <div class="form-control">
-                <p class="error-msg">Name</p>
-                <input
-                  type="text"
-                  name="title"
-                  class="input-control name"
-                  placeholder=""
-                  disabled
-                />
-              </div>
-      
-              <div class="form-control">
-                <p class="error-msg">Book's Name</p>
-                <input
-                  type="text"
-                  name="author-name"
-                  class="input-control book-name"
-                  placeholder=""
-                  disabled
-                />
-              </div>
-              <div class="form-control-2">
-              <div class="form-control">
-                <p class="error-msg">Request Date</p>
-                <input
-                  type="date"
-                  class="input-control request-date"
-                  disabled
-                />
-              </div>
-      
-              <div class="form-control">
-                <p class="error-msg">Return Date</p>
-                <input
-                type="date"
-                class="input-control return-date"
-                disabled
-                />
-              </div>
-            </div>
-              <div class="form-control">
-                <p class="error-msg">Reason</p>
-                <textarea
-                  name="textarea"
-                  class="input-control desc"
-                  rows="5"
-                  cols="30"
-                  disabled
-                ></textarea>
-              </div>
-              <button  class="btn btn-outline my-1" >Approve <i class="fa-solid fa-check"></i></button> 
-              <button  class="btn my-1" >Reject <i class="fa-solid fa-times"></i></button> 
-             
-          </div>
-          
+          <div class="books empty-container"> <!-- Inject empty books--></div>
+
+          <div class="modal card request"> <!-- Inject pop ups--></div>
         </div>
       </div>
     </section>
@@ -132,24 +76,20 @@
           />
         </div>
         <div class="form-control-2">
-        <div class="form-control">
-          <p class="error-msg">Book Cover</p>
-          <input
-            type="file"
-            class="input-control image-cover"
-            accept=".jpg, .png, .jpeg"
-          />
-        </div>
+          <div class="form-control">
+            <p class="error-msg">Book Cover</p>
+            <input
+              type="file"
+              class="input-control image-cover"
+              accept=".jpg, .png, .jpeg"
+            />
+          </div>
 
-        <div class="form-control">
-          <p class="error-msg">Book File</p>
-          <input
-            type="file"
-            class="input-control book-file"
-            accept=".pdf"
-          />
+          <div class="form-control">
+            <p class="error-msg">Book File</p>
+            <input type="file" class="input-control book-file" accept=".pdf" />
+          </div>
         </div>
-      </div>
         <div class="form-control">
           <p class="error-msg">Type</p>
           <select name="degree" id="" class="input-control type">
@@ -174,5 +114,3 @@
     <script src="./js/user.js"></script>
   </body>
 </html>
-
-

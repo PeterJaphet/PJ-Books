@@ -20,7 +20,7 @@
     <div class="home">
       <header>
         <div class="container flex">
-          <div class="logo">PJ BOOKS</div>
+          <a href="/"><div class="logo">PJ BOOKS</div></a>
           <div class="search-input shadow">
             <form class="">
               <i class="fa-solid fa-magnifying-glass"></i>
@@ -43,9 +43,12 @@
       </header>
     </div>
 
-    <div class="book-details bg-light py-3"></div>
+    <div class="book-details bg-light py-3">
 
-    <div class="modal card">
+      <!-- Inject Book Details -->
+    </div>
+
+    <div class="modal card borrow">
       <form id="book-request">
         <h1 class="my-2 lg">Request Book</h1>
 
@@ -97,6 +100,7 @@
     </footer>
 
     <div id="overlay" class=""></div>
+    <script src="./js/service.js"></script>
     <script src="./js/bookDetails.js"></script>
   </body>
 </html>

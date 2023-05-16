@@ -4,24 +4,80 @@ const form = document.querySelector("#book-request");
 const requestReason = document.querySelector(".reason");
 const returnDate = document.querySelector(".return-date");
 const types = ["Public", "Private"];
+const dropContainer = document.querySelector(".drop-down");
 let user = JSON.parse(localStorage.getItem("user"));
-const userId = user.id;
+
 const url = "http://localhost:3000";
 let requestDetails = {};
 
+
+if(!user){
+    window.location.href = "login.html";
+  }
+
+  if(user && !id){
+    window.location.href = "index.html";
+  }
+
+  const userId = user.id;
+
+
+  const renderUser = () => {
+    if(user){
+    
+      let template = `
+                  <div class="drop-user-info">
+                    <h3>${user.firstName + " " + user.lastName}</h3>
+                    <span>${types[user.type - 1]}</span>
+                  </div>
+    
+                  <a href="user.html" class="drop-down-link"><i class="fa-regular fa-user icon"></i><p>Profile</p><i class="fa-solid fa-angle-right"></i></a>
+                  <a href="login.html" class="drop-down-link"><i class="fa-regular fa-arrow-right-from-bracket icon"></i><p>Logout</p><i class="fa-solid fa-angle-right"></i></a>
+                  `;
+    
+      dropContainer.innerHTML = template;
+    }
+    };
+
 //render Book Details
 const renderBookDetails = async () => {
-  uri = `http://localhost:3000/books/${id}`;
+    
 
+  const uri = `http://localhost:3000/books/${id}`;
   const res = await fetch(uri);
   const book = await res.json();
+
+
+  const uriBorrow =`http://localhost:3000/books/${id}?_embed=borrow`;
+  const res2 = await fetch(uriBorrow);
+  const borrow = await res2.json();
+
+  const filteredBorrow = borrow.borrow.filter((borrow) => borrow.userId === userId)
+  .flat();
+
+  console.log(borrow );
+  const latestBorrow = filteredBorrow.splice(-1)
+  console.log(latestBorrow.length);
+    if(latestBorrow.length!==0){
+  const now = new Date().getTime();
+  const rDate = new Date(latestBorrow[0].returnDate).getTime();}
+
   const uploadDate = book.createdAt.split("T");
-  requestDetails = { ...requestDetails, userId: userId, bookId: book.id,authorId:book.userId };
+  let template ="";
+
+
+
+  requestDetails = {
+    ...requestDetails,
+    userId: userId,
+    bookId: book.id,
+    authorId: book.userId,
+  };
 
   template = `
     <div class="container flex">
     <div class="book-image">
-      <img src="${book.uploadUrl}" alt="" class="book-img"/>
+    <img src="${book.uploadUrl}" alt="" class="book-img"/>
     </div>
     <div class="book-detail">
     <div class="book-info">
@@ -37,12 +93,16 @@ const renderBookDetails = async () => {
       </div>
       <div class="book-btn py-1">
       
-
+        
+      
       ${
-        book.type - 1 === 0
-          ? '<span class="open btn btn-primary">Open</span>'
+        book.type - 1 === 0 || book.userId === userId
+          ? `<span class="open btn btn-primary" onclick="openPdf('${
+              book.uploadFile.split(",")[1]
+            }');">Open</span>`
           : "<span></span>"
       }
+      
 
         <span class="like btn ${
           book.likes.includes(userId) ? "btn-primary" : "btn-outline"
@@ -57,17 +117,81 @@ const renderBookDetails = async () => {
     book.saves.includes(userId)
       ? "Saved <i class='fa-solid fa-bookmark'></i></span>"
       : "Save <i class='fa-regular fa-bookmark'></i>"
-  }</span>
-          ${
-            book.type - 1 === 1
-              ? '<span class="borrow btn btn-outline" onclick="borrowBtn()">Borrow <i class="fa-solid fa-flag-swallowtail"></i></span>'
-              : "<span></span>"
-          }
+  }</span>`;
+
+  if(latestBorrow.length===0){
+
+    template+=`${
+        book.type - 1 === 1 && book.userId !== userId
+          ? ` <span class="borrow btn btn-outline" onclick="borrowBtn()">Borrow <i class="fa-solid fa-flag-swallowtail"></i></span>` 
+          : "<span></span>"
+      }
+      
+      
+       
         
       </div>
       </div>
       </div>`;
+  }
+
+  if(latestBorrow.length===1){
+    const now = new Date().getTime();
+    const rDate = new Date(latestBorrow[0].returnDate).getTime();
+
+    if(latestBorrow[0].status ==="rejected" || now > rDate){
+
+        template += `
+
+    ${
+        book.type - 1 === 1 && book.userId !== userId
+          ? ` <span class="borrow btn btn-outline" onclick="borrowBtn()">Borrow <i class="fa-solid fa-flag-swallowtail"></i></span>` 
+          : "<span></span>"
+      }
+      </div>
+      </div>
+      </div>`;
+
+    }
+
+    else if(latestBorrow[0].status ==="pending"){
+        
+        template += `
+
+    ${
+        book.type - 1 === 1 && book.userId !== userId
+          ? `<span class="borrow btn btn-outline" onclick="statusBtn('${latestBorrow[0].status}')">Borrow <i class="fa-solid fa-flag-swallowtail"></i></span>` 
+          : "<span></span>"
+      }
+      </div>
+      </div>
+      </div>`;
+
+    }
+
+  }
+
+        
   bookDetailContainer.innerHTML = template;
+};
+
+
+const statusBtn = (status) =>{
+    if (status==="pending")
+    alert("Borrow request is Pending!")
+    if (status==="rejected")
+    alert("Borrow request Has been Rejected")
+    if (status==="approved")
+    alert("Book Has been Approved!")
+  }
+
+const openPdf = (link) => {
+  let pdfWindow = window.open("");
+  pdfWindow.document.write(
+    "<iframe style='border:none;' width='100%' height='100%' frameBorder='' src='data:application/pdf;base64, " +
+      encodeURI(link) +
+      "'></iframe>"
+  );
 };
 
 // code block to add like
@@ -153,7 +277,7 @@ const checkSave = (saves) => {
 };
 
 const borrowBtn = () => {
-  const modal = document.querySelector(".modal");
+  const modal = document.querySelector(".modal.card.borrow");
   const overlay = document.querySelector("#overlay");
 
   modal.classList.add("active");
@@ -182,7 +306,7 @@ const borrowBtn = () => {
           console.error(error);
         });
     }
-});
+  });
   overlay.addEventListener("click", () => {
     modal.classList.remove("active");
     overlay.classList.remove("active");
@@ -242,4 +366,10 @@ const handleValidation = () => {
   return true;
 };
 
-window.addEventListener("DOMContentLoaded", () => renderBookDetails());
+
+const renderDetails = () =>{
+    renderUser();
+    renderBookDetails();
+}
+
+window.addEventListener("DOMContentLoaded", () => renderDetails());

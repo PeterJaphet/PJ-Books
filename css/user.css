@@ -215,6 +215,9 @@ cursor: pointer;
   transform: translate(-50%, -50%) scale(1);
 }
 
+.modal.card.request.active {
+  transform: translate(-50%, -50%) scale(1);
+}
 /* Request */
 
 .span-link{
@@ -229,3 +232,14 @@ cursor: pointer;
   width: 97%;
 }
 
+.books.empty-container{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ height: 0;
+ width: 100%;
+}
+
+.books.empty-container.active{
+  height: 300px;
+}
