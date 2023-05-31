@@ -15,13 +15,14 @@ body {
   background-size: cover;
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .logo {
   font-size: 3rem;
   font-weight: bold;
   cursor: pointer;
-  color: var(--accent-color);
+  color:var(--accent-color);
   position: absolute;
   top: 30px;
   left: 70px;
@@ -40,6 +41,10 @@ input:-webkit-autofill:active {
   background-color: #f6f6f2;
   height: 100%;
   display: flex;
+}
+
+#login-form h1{
+ color: var(--primary-color);
 }
 
 .login-details form {
@@ -108,4 +113,56 @@ input:-webkit-autofill:active {
 .my-3 a {
   color: var(--accent-color);
   font-weight: bold;
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1199px) {
+}
+
+@media screen and (max-width: 1023px) {
+  body {
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 2.3rem;
+    top: 20px;
+    left: 20px;
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+}
+
+@media only screen and  (max-width: 479px) {
+  .logo {
+    font-size: 1.5rem;
+    top: 8px;
+    left: 10px;
+  }
+
+  .login-image{
+    /* background-image: none; */
+    background-color:var(--secondary-color);
+
+  }
+
+  .login-details form {
+    width: 300px;
+  }
+
+  .my-4.lg{
+    font-size: 1.9rem;
+    margin:5px 0 0px;
+  }
+
+  .form-control {
+    margin: 10px 0 0;
+  }
+  .my-3{
+    margin: .8rem 0;
+  }
+  p{
+    font-size: 16px;
+  }
 }

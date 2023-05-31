@@ -2,6 +2,8 @@ const url = "http://localhost:3000";
 
 const addBtn = document.querySelector(".form-active");
 const requestBtn = document.querySelector("#request");
+const booksBtn = document.querySelector("#books");
+const savedBtn = document.querySelector("#saved");
 const form = document.querySelector("#add-book");
 const title = document.querySelector(".title");
 const author = document.querySelector(".author-name");
@@ -13,23 +15,25 @@ const userInfoContainer = document.querySelector(".user-info");
 const userBooksContainer = document.querySelector(
   ".user-books .books-container"
 );
+const filterCat = document.querySelector(".filters span");
 const bookRequestContainer = document.querySelector(".books.books-request");
 const emptyContainer = document.querySelector(".books.empty-container");
 const clearText = document.querySelectorAll("#add-book input[type=text]");
 const clearFile = document.querySelectorAll("#add-book input[type=file]");
 const cat = document.querySelectorAll(".user-books span");
 const settings = document.querySelector("setting");
+const filters = document.querySelector(".filters.btn");
+const filterMenu = document.querySelectorAll(".ul.filter span");
 let user = JSON.parse(localStorage.getItem("user"));
 const likes = [];
 const saves = [];
 
-
+console.log(filterCat.innerHTML);
 
 const types = ["Author", "Reader"];
 let BookDetails = {};
 
-
-if(!user){
+if (!user) {
   window.location.href = "login.html";
 }
 
@@ -52,13 +56,25 @@ const handleSettings = () => {
 
 //Render User info
 const renderUserInfo = async () => {
+  uri1 = `http://localhost:3000/books`;
+  const res1 = await fetch(uri1);
+  const savedBooks = await res1.json();
+
   uri = `http://localhost:3000/books?userId=${userId}`;
   const res = await fetch(uri);
   const books = await res.json();
   let saves = 0;
+  let saved = 0;
 
   books.forEach((book) => {
     saves += book.saves.length;
+  });
+
+  savedBooks.forEach((book) => {
+    if (book.saves.includes(userId)) {
+      saved += 1;
+      console.log("hi");
+    }
   });
 
   let template = `
@@ -72,7 +88,7 @@ const renderUserInfo = async () => {
             <div class="setting_dropdown shadow">
             <div>
               <a href="index.html" class="btn-link"><i class="fa-solid fa-house"></i><p>Home</p><i class="fa-solid fa-angle-right"></i></a>
-              <span class="btn-link"><i class="fa-solid fa-xmark"></i><p>Logout</p><i class="fa-solid fa-angle-right"></i></span>
+              <span class="btn-link" onclick="logout()"><i class="fa-solid fa-xmark"></i><p>Logout</p><i class="fa-solid fa-angle-right"></i></span>
               </div>
             </div>
           </div>
@@ -81,10 +97,20 @@ const renderUserInfo = async () => {
               <p>${books ? books.length : 0}</p>
               <h3>Books</h3>
             </div>
-            <div class="text-center">
-              <p>${books ? saves : 0}</p>
-              <h3>Saves</h3>
-            </div>
+            
+             ${
+               user.type !== 1
+                 ? `<div class="text-center"><p>${
+                     books ? saved : 0
+                   }</p> <h3>Saved</h3></div>`
+                 : `<div class="text-center"><p>${
+                     books ? saved : 0
+                   }</p><h3>Saved</h3></div> <div class="text-center"><p>${
+                     books ? saves : 0
+                   }</p> <h3>Saves</h3></div>`
+             } 
+              
+            
           </div>
 
           <div class="user-desc my-2 card">
@@ -99,25 +125,36 @@ const renderUserInfo = async () => {
   userInfoContainer.innerHTML = template;
 };
 
+const logout = () => {
+  localStorage.removeItem("user");
+  window.location.replace("/");
+};
+
 //render Filter options
 
 const renderFilter = () => {
   if (user.type !== 1) {
     addBtn.style.display = "none";
     requestBtn.style.display = "none";
+    booksBtn.style.display = "none";
+    booksBtn.classList.remove("active");
+    savedBtn.classList.add("active");
+    renderUserBooks("saved");
   }
 };
 
 // render books
-const renderUserBooks = async (id,load) => {
-
+const renderUserBooks = async (id, load) => {
   //userBooksContainer.innerHTML = "";
-  emptyContainer.innerHTML = "";
-  bookRequestContainer.innerHTML = "";
+  // emptyContainer.innerHTML = "";
+  // emptyContainer.classList.remove("active");
+
   if (id == "books") {
-    if(load===true){
-    for (let i = 0; i < 4; i++) {
-      userBooksContainer.innerHTML += `
+    filterCat.innerHTML = "BOOKS";
+    document.querySelector(".ul.filter").classList.remove("active");
+    if (load === true) {
+      for (let i = 0; i < 4; i++) {
+        userBooksContainer.innerHTML += `
       <div class="book-item shadow ">
       
       <div class="skeleton skeleton-image"></div>
@@ -134,7 +171,8 @@ const renderUserBooks = async (id,load) => {
         </div>
         </div>
         `;
-    }}
+      }
+    }
     uri = `http://localhost:3000/books?userId=${userId}`;
 
     const res = await fetch(uri);
@@ -146,7 +184,9 @@ const renderUserBooks = async (id,load) => {
       books.forEach((book) => {
         template += `
       <div class="book-item shadow">
-      <a href="/bookDetails.html?id=${book.id}"><img src="${book.uploadUrl}" alt="" /></a>
+      <a href="/bookDetails.html?id=${book.id}"><img src="${
+          book.uploadUrl
+        }" alt="" /></a>
       <div class="book-item__text text-center">
         <h3>${book.title}</h3>
         <p>${book.author}</p>
@@ -170,27 +210,38 @@ const renderUserBooks = async (id,load) => {
             `;
       });
 
+      bookRequestContainer.innerHTML = "";
+      emptyContainer.classList.remove("active");
       userBooksContainer.innerHTML = template;
       emptyContainer.innerHTML = "";
+      emptyContainer.style.marginTop = "0";
     } else {
       userBooksContainer.innerHTML = "";
       bookRequestContainer.innerHTML = "";
       emptyContainer.classList.add("active");
-      emptyContainer.innerHTML = `<div class="empty md">No Books 😢</div>`;
+      emptyContainer.innerHTML = `<div class="md">No Books 😢</div>`;
       emptyContainer.style.marginTop = "-3rem";
     }
   }
 
   if (id == "saved") {
+    filterCat.innerHTML = "SAVED";
+    document.querySelector(".ul.filter").classList.remove("active");
+    emptyContainer.innerHTML = "";
+    emptyContainer.style.marginTop = "0";
 
     renderUserSavedBooks(load);
   }
 
   if (id == "borrow") {
-   // userBooksContainer.innerHTML = "";
-    if(load===true){
-    for (let i = 0; i < 4; i++) {
-      userBooksContainer.innerHTML += `
+    filterCat.innerHTML = "BORROWED";
+    document.querySelector(".ul.filter").classList.remove("active");
+    // userBooksContainer.innerHTML = "";
+    emptyContainer.innerHTML = "";
+    emptyContainer.style.marginTop = "0";
+    if (load === true) {
+      for (let i = 0; i < 4; i++) {
+        userBooksContainer.innerHTML += `
       <div class="book-item shadow ">
       
       <div class="skeleton skeleton-image"></div>
@@ -207,18 +258,22 @@ const renderUserBooks = async (id,load) => {
         </div>
         </div>
         `;
-    }}
+      }
+    }
     renderBorrowedBooks(load);
   }
 
   if (id == "request") {
+    filterCat.innerHTML = "REQUESTS";
+    document.querySelector(".ul.filter").classList.remove("active");
+    emptyContainer.innerHTML = "";
+    emptyContainer.style.marginTop = "0";
+    userBooksContainer.innerHTML = "";
     renderRequests();
   }
 };
 
 const renderRequests = async () => {
-  userBooksContainer.innerHTML = "";
-  emptyContainer.innerHTML = "";
   uri = `http://localhost:3000/borrow?authorId=${userId}`;
   const res = await fetch(uri);
   const borrowUsers = await res.json();
@@ -247,12 +302,13 @@ const renderRequests = async () => {
   });
 
   if (count !== 0) {
+    // emptyContainer.classList.remove("active");
     bookRequestContainer.innerHTML = template;
     bookRequestContainer.style.marginTop = "-2rem";
   } else {
     bookRequestContainer.innerHTML = "";
     emptyContainer.classList.add("active");
-    emptyContainer.innerHTML = `<div class=" md">No Book Requests 😢</div>`;
+    emptyContainer.innerHTML = `<div class="md">No Book Requests 😢</div>`;
     emptyContainer.style.marginTop = "-3rem";
   }
 };
@@ -419,11 +475,11 @@ const rejectRequest = async (id) => {
 const renderUserSavedBooks = async (load) => {
   emptyContainer.innerHTML = "";
 
-  if(load===true){
-  bookRequestContainer.innerHTML = "";
+  if (load === true) {
+    bookRequestContainer.innerHTML = "";
 
-  for (let i = 0; i < 4; i++) {
-    userBooksContainer.innerHTML += `
+    for (let i = 0; i < 4; i++) {
+      userBooksContainer.innerHTML += `
     <div class="book-item shadow ">
     
     <div class="skeleton skeleton-image"></div>
@@ -440,7 +496,8 @@ const renderUserSavedBooks = async (load) => {
       </div>
       </div>
       `;
-  }}
+    }
+  }
   uri = `http://localhost:3000/books`;
   const res = await fetch(uri);
   const books = await res.json();
@@ -453,7 +510,9 @@ const renderUserSavedBooks = async (load) => {
       count++;
       template += `
     <div class="book-item shadow">
-    <a href="/bookDetails.html?id=${book.id}"><img src="${book.uploadUrl}" alt="" /></a>
+    <a href="/bookDetails.html?id=${book.id}"><img src="${
+        book.uploadUrl
+      }" alt="" /></a>
     <div class="book-item__text text-center">
       <h3>${book.title}</h3>
       <p>${book.author}</p>
@@ -478,11 +537,11 @@ const renderUserSavedBooks = async (load) => {
     }
   });
 
-
   if (count !== 0) {
     userBooksContainer.innerHTML = template;
-  } 
-  if(count===0) {
+    // emptyContainer.classList.remove("active");
+  }
+  if (count === 0) {
     userBooksContainer.innerHTML = "";
     emptyContainer.classList.add("active");
     emptyContainer.innerHTML = `<div class="md">No Saved Book(s) 😢</div>`;
@@ -493,14 +552,12 @@ const renderUserSavedBooks = async (load) => {
 // Render Borrowed Books
 
 const renderBorrowedBooks = async (load) => {
- 
   emptyContainer.innerHTML = "";
   bookRequestContainer.innerHTML = "";
 
-  
-  if(load===true){
+  if (load === true) {
     bookRequestContainer.innerHTML = "";
-  
+
     for (let i = 0; i < 4; i++) {
       userBooksContainer.innerHTML += `
       <div class="book-item shadow ">
@@ -519,7 +576,8 @@ const renderBorrowedBooks = async (load) => {
         </div>
         </div>
         `;
-    }}
+    }
+  }
   const uri = `http://localhost:3000/books?_embed=borrow`;
   const res = await fetch(uri);
   const books = await res.json();
@@ -537,20 +595,24 @@ const renderBorrowedBooks = async (load) => {
   let template = "";
   let count = 0;
 
-  if (filteredBorrow.length!== 0) {
-  filteredBorrow.forEach((book) => {
-    const bookItem = filteredBooks.filter((item) => item.id === book.bookId);
-    console.log(bookItem)
-    const now = new Date().getTime();
-    const rDate = new Date(book.returnDate).getTime();
+  if (filteredBorrow.length !== 0) {
+    filteredBorrow.forEach((book) => {
+      const bookItem = filteredBooks.filter((item) => item.id === book.bookId);
+      console.log(bookItem);
+      const now = new Date().getTime();
+      const rDate = new Date(book.returnDate).getTime();
 
-    count++;
-    template += `
+      count++;
+      template += `
     <div class="book-item shadow">
 
-    ${ now < rDate && book.status==="approved" ? `<span onclick="openPdf('${
-      bookItem[0].uploadFile.split(",")[1]
-    }');"><img src="${bookItem[0].uploadUrl}" alt="" /></span>`:`<span onclick="handleStatus('${book.status}')"><img src="${bookItem[0].uploadUrl}" alt="" /></span>`}
+    ${
+      now < rDate && book.status === "approved"
+        ? `<span onclick="openPdf('${
+            bookItem[0].uploadFile.split(",")[1]
+          }');"><img src="${bookItem[0].uploadUrl}" alt="" /></span>`
+        : `<span onclick="handleStatus('${book.status}')"><img src="${bookItem[0].uploadUrl}" alt="" /></span>`
+    }
     
     <div class="book-item__text text-center">
       <h3>${bookItem[0].title}</h3>
@@ -561,10 +623,10 @@ const renderBorrowedBooks = async (load) => {
         </div>
     </div>
           `;
-  });
+    });
 
     userBooksContainer.innerHTML = template;
-    
+    // emptyContainer.classList.remove("active");
   } else {
     userBooksContainer.innerHTML = "";
     emptyContainer.classList.add("active");
@@ -582,14 +644,17 @@ const openPdf = (link) => {
   );
 };
 
-const handleStatus = (status) =>{
-  if (status==="pending")
-  alert("Borrow request is Pending")
-  if (status==="rejected")
-  alert("Borrow request Has been Rejected")
-  if (status==="approved")
-  alert("Book Has been Returned")
-}
+//Category
+filters.addEventListener("click", () => {
+  document.querySelector(".ul.filter").classList.toggle("active");
+  console.log("Hello");
+});
+
+const handleStatus = (status) => {
+  if (status === "pending") alert("Borrow request is Pending");
+  if (status === "rejected") alert("Borrow request Has been Rejected");
+  if (status === "approved") alert("Book Has been Returned");
+};
 
 const addLike = async (bookId, id) => {
   let updateLikes;
@@ -620,7 +685,7 @@ const addLike = async (bookId, id) => {
     }),
   });
 
-  renderUserBooks(id,false); // re-render the books after the update
+  renderUserBooks(id, false); // re-render the books after the update
 };
 
 const checkLike = (likes) => {
@@ -661,7 +726,7 @@ const addSave = async (bookId, id) => {
       saves: [...updateSaves],
     }),
   });
-  renderUserBooks(id,false);
+  renderUserBooks(id, false);
   renderUserInfo();
 };
 

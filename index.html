@@ -19,7 +19,7 @@
     <div class="home">
       <header>
         <div class="container flex">
-          <a href="index.html"><div class="logo">PJ BOOKS</div></a>
+          <a href="index.html" class="logo"><div >PJ BOOKS</div></a>
           <div class="search-input shadow">
             <form class="form-search">
               <i class="fa-solid fa-magnifying-glass"></i>
@@ -29,18 +29,51 @@
                 class="search"
                 placeholder="Search"
               />
+            
             </form>
+
+            <div class="search-display">
+              <div class="search-item">
+                <div class="search-details">
+                  <img src="./images/3.jpg" alt="" class="search-img">
+                  <div class="book-info">
+                    <h3>Legend Of the Seeker</h3>
+                    <p>PJ Jackson</p>
+                  </div>
+                </div>
+              
+              </div>
+                
+              <a href="bookDetails.html?">
+              <div class="search-item">
+                <div class="search-details">
+                  <img src="./images/3.jpg" alt="" class="search-img">
+                  <div class="book-info">
+                    <h3>Legend Of the Seeker</h3>
+                    <p>PJ Jackson</p>
+                  </div>
+                </div>
+              </a>
+                
+
+              </div>
+            </div>
           </div>
           <div class="user">
             <i class="fa-solid fa-user icon"></i>
-          
-          </div>
 
-          <div class="drop-down-wrap shadow">
-            <div class="drop-down">
-              
+            <div class="drop-down-wrap shadow">
+              <div class="drop-down"></div>
             </div>
           </div>
+
+          
+          <span class="burger" onclick="toggleMenu()" >
+           
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </span>
         </div>
       </header>
 
@@ -61,7 +94,7 @@
         <div class="empty">
           <span class="md">No Book Uploaded!</span>
         </div>
-        <div class="books grid grid-5 py-1 ">
+        <div class="books grid grid-5 py-1">
           <!-- Latest books Injection -->
         </div>
       </div>
@@ -91,8 +124,7 @@
           <span class="md">No Book Uploaded!</span>
         </div>
         <div class="books grid grid-5 py-1">
-    <!-- Recommended books Injection -->
-            
+          <!-- Recommended books Injection -->
         </div>
       </div>
     </section>

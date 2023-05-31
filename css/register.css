@@ -1,6 +1,5 @@
 body {
   height: 100vh;
-  width: 100vw;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
@@ -140,5 +139,10 @@ input:-webkit-autofill:active {
   .register-image {
 
     display: none;
+  }
+
+  .register-details form {
+    max-width:350px
+   
   }
 }

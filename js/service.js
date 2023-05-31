@@ -11,3 +11,10 @@ userBtn.addEventListener("click", ()=>{
   }
   })
 
+  const toggleMenu =()=>{
+    const hamburger = document.querySelector(".burger");
+    hamburger.classList.toggle("active");
+
+    document.body.classList.toggle("open");
+  }
+

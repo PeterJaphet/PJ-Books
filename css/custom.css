@@ -3,7 +3,7 @@ html{
 }
 
 .container {
-    max-width: 1440px;
+    max-width: 1540px;
     margin: 0 auto;
     overflow: auto;
     padding: 0 20px;
@@ -15,7 +15,7 @@ html{
     border-radius: 10px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    margin: 10px;
+    margin: 12px;
   }
   
 
@@ -163,7 +163,7 @@ html{
   }
   
   .grid-3 {
-    grid-template-columns: repeat(4, minmax(220px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
     justify-content: space-between;
     gap:10px;
     display: grid;
@@ -171,7 +171,7 @@ html{
 
   .grid-5 {
     /* grid-template-columns: repeat(5, 1fr); */
-    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(190px,1fr));
     justify-content: space-between;
     gap: 20px;
     margin: auto;
@@ -285,11 +285,12 @@ html{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
-    transition: 400ms ease-in-out;
+    
   }
 
   .modal.active {
     transform: translate(-50%, -50%) scale(1);
+    transition: 400ms ease-in-out;
   }
 
   .input-control {
@@ -305,12 +306,13 @@ html{
   #overlay.active {
     opacity: 1;
     pointer-events: all;
+    transition: 400ms ease-in-out;
   }
 
   #overlay {
     position: fixed;
     background-color: rgb(0, 0, 0, 0.4);
-    transition: 400ms ease-in-out;
+   
     left: 0;
     top: 0;
     right: 0;
@@ -392,3 +394,53 @@ html{
   background-color: hsl(200, 20%, 95%);
 }
 } */
+
+@media only screen and (min-width: 1024px) and (max-width: 1199px){
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px){
+
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px){
+  
+.form-control-2 {
+
+  flex-direction: column;
+  gap: 0px;
+}
+}
+
+@media only screen and (min-width: 0px) and (max-width: 479px){
+
+  .form-control-2 {
+
+    flex-direction: column;
+    gap: 0px;
+  }
+
+  .lead {
+    font-size: 16px;
+  }
+  
+  .sm {
+    font-size: .6rem;
+  }
+  
+  .md {
+    font-size: 1.5rem;
+  }
+  
+  .lg {
+    font-size: 2rem;
+  }
+  
+  .xl {
+    font-size: 3rem;
+  }
+
+}
+
+
+

@@ -10,22 +10,19 @@ let user = JSON.parse(localStorage.getItem("user"));
 const url = "http://localhost:3000";
 let requestDetails = {};
 
+if (!user) {
+  window.location.href = "login.html";
+}
 
-if(!user){
-    window.location.href = "login.html";
-  }
+if (user && !id) {
+  window.location.href = "index.html";
+}
 
-  if(user && !id){
-    window.location.href = "index.html";
-  }
+const userId = user.id;
 
-  const userId = user.id;
-
-
-  const renderUser = () => {
-    if(user){
-    
-      let template = `
+const renderUser = () => {
+  if (user) {
+    let template = `
                   <div class="drop-user-info">
                     <h3>${user.firstName + " " + user.lastName}</h3>
                     <span>${types[user.type - 1]}</span>
@@ -34,38 +31,35 @@ if(!user){
                   <a href="user.html" class="drop-down-link"><i class="fa-regular fa-user icon"></i><p>Profile</p><i class="fa-solid fa-angle-right"></i></a>
                   <a href="login.html" class="drop-down-link"><i class="fa-regular fa-arrow-right-from-bracket icon"></i><p>Logout</p><i class="fa-solid fa-angle-right"></i></a>
                   `;
-    
-      dropContainer.innerHTML = template;
-    }
-    };
+
+    dropContainer.innerHTML = template;
+  }
+};
 
 //render Book Details
 const renderBookDetails = async () => {
-    
-
   const uri = `http://localhost:3000/books/${id}`;
   const res = await fetch(uri);
   const book = await res.json();
 
-
-  const uriBorrow =`http://localhost:3000/books/${id}?_embed=borrow`;
+  const uriBorrow = `http://localhost:3000/books/${id}?_embed=borrow`;
   const res2 = await fetch(uriBorrow);
   const borrow = await res2.json();
 
-  const filteredBorrow = borrow.borrow.filter((borrow) => borrow.userId === userId)
-  .flat();
+  const filteredBorrow = borrow.borrow
+    .filter((borrow) => borrow.userId === userId)
+    .flat();
 
-  console.log(borrow );
-  const latestBorrow = filteredBorrow.splice(-1)
+  console.log(borrow);
+  const latestBorrow = filteredBorrow.splice(-1);
   console.log(latestBorrow.length);
-    if(latestBorrow.length!==0){
-  const now = new Date().getTime();
-  const rDate = new Date(latestBorrow[0].returnDate).getTime();}
+  if (latestBorrow.length !== 0) {
+    const now = new Date().getTime();
+    const rDate = new Date(latestBorrow[0].returnDate).getTime();
+  }
 
   const uploadDate = book.createdAt.split("T");
-  let template ="";
-
-
+  let template = "";
 
   requestDetails = {
     ...requestDetails,
@@ -75,7 +69,7 @@ const renderBookDetails = async () => {
   };
 
   template = `
-    <div class="container flex">
+    <div class="container grid">
     <div class="book-image">
     <img src="${book.uploadUrl}" alt="" class="book-img"/>
     </div>
@@ -119,13 +113,12 @@ const renderBookDetails = async () => {
       : "Save <i class='fa-regular fa-bookmark'></i>"
   }</span>`;
 
-  if(latestBorrow.length===0){
-
-    template+=`${
-        book.type - 1 === 1 && book.userId !== userId
-          ? ` <span class="borrow btn btn-outline" onclick="borrowBtn()">Borrow <i class="fa-solid fa-flag-swallowtail"></i></span>` 
-          : "<span></span>"
-      }
+  if (latestBorrow.length === 0) {
+    template += `${
+      book.type - 1 === 1 && book.userId !== userId
+        ? ` <span class="borrow btn btn-outline" onclick="borrowBtn()">Borrow <i class="fa-solid fa-flag-swallowtail"></i></span>`
+        : "<span></span>"
+    }
       
       
        
@@ -135,55 +128,43 @@ const renderBookDetails = async () => {
       </div>`;
   }
 
-  if(latestBorrow.length===1){
+  if (latestBorrow.length === 1) {
     const now = new Date().getTime();
     const rDate = new Date(latestBorrow[0].returnDate).getTime();
 
-    if(latestBorrow[0].status ==="rejected" || now > rDate){
-
-        template += `
+    if (latestBorrow[0].status === "rejected" || now > rDate) {
+      template += `
 
     ${
-        book.type - 1 === 1 && book.userId !== userId
-          ? ` <span class="borrow btn btn-outline" onclick="borrowBtn()">Borrow <i class="fa-solid fa-flag-swallowtail"></i></span>` 
-          : "<span></span>"
-      }
+      book.type - 1 === 1 && book.userId !== userId
+        ? ` <span class="borrow btn btn-outline" onclick="borrowBtn()">Borrow <i class="fa-solid fa-flag-swallowtail"></i></span>`
+        : "<span></span>"
+    }
       </div>
       </div>
       </div>`;
-
-    }
-
-    else if(latestBorrow[0].status ==="pending"){
-        
-        template += `
+    } else if (latestBorrow[0].status === "pending") {
+      template += `
 
     ${
-        book.type - 1 === 1 && book.userId !== userId
-          ? `<span class="borrow btn btn-outline" onclick="statusBtn('${latestBorrow[0].status}')">Borrow <i class="fa-solid fa-flag-swallowtail"></i></span>` 
-          : "<span></span>"
-      }
+      book.type - 1 === 1 && book.userId !== userId
+        ? `<span class="borrow btn btn-outline" onclick="statusBtn('${latestBorrow[0].status}')">Borrow <i class="fa-solid fa-flag-swallowtail"></i></span>`
+        : "<span></span>"
+    }
       </div>
       </div>
       </div>`;
-
     }
-
   }
 
-        
   bookDetailContainer.innerHTML = template;
 };
 
-
-const statusBtn = (status) =>{
-    if (status==="pending")
-    alert("Borrow request is Pending!")
-    if (status==="rejected")
-    alert("Borrow request Has been Rejected")
-    if (status==="approved")
-    alert("Book Has been Approved!")
-  }
+const statusBtn = (status) => {
+  if (status === "pending") alert("Borrow request is Pending!");
+  if (status === "rejected") alert("Borrow request Has been Rejected");
+  if (status === "approved") alert("Book Has been Approved!");
+};
 
 const openPdf = (link) => {
   let pdfWindow = window.open("");
@@ -366,10 +347,9 @@ const handleValidation = () => {
   return true;
 };
 
-
-const renderDetails = () =>{
-    renderUser();
-    renderBookDetails();
-}
+const renderDetails = () => {
+  renderUser();
+  renderBookDetails();
+};
 
 window.addEventListener("DOMContentLoaded", () => renderDetails());
