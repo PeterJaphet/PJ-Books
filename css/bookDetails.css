@@ -18,14 +18,10 @@ header {
 }
 
 .book-details .grid {
-  /* justify-content: center;
-  width: 100%; */
   grid-template-columns: 300px auto;
   gap: 40px;
   max-width: 900px;
   overflow: hidden;
-  /* align-items: center;
-  height: 100%; */
 }
 
 .book-details .book-img {
@@ -33,6 +29,35 @@ header {
   width: 100%;
   border-radius: 7px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+.book-image {
+  position: relative;
+}
+
+.book-image:hover .report-btn {
+  display: flex;
+}
+
+.report-btn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background-color: rgb(208, 43, 43);
+  text-align: center;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.report-btn:hover {
+  background-color: rgb(219, 20, 20);
 }
 
 /* Book Detail */
@@ -154,31 +179,25 @@ header {
     gap: 10px;
   }
   .book-image {
-
     width: 100%;
     /* padding: 0 10px; */
   }
-  .book-details .book-img{
+  .book-details .book-img {
     width: 100%;
   }
 
-  .book-detail{
-    padding:0;
+  .book-detail {
+    padding: 0;
     width: 100%;
-    margin-top: -60px;
+    margin-top: -20px;
   }
 
-  .home .search-input{
-    top:65px;
+  .home .search-input {
+    top: 65px;
     border-radius: 0;
-  }
-
-  .home .search-input{
-    
   }
 
   .book-details .book-author {
     font-size: 16px;
   }
-
 }

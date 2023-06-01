@@ -262,19 +262,6 @@ header button {
   font-size: 16px;
 }
 
-/* .burger{
-  z-index: 3;
-  right: 0;
-  display: grid;
-  place-items: center;
-  width: 35px;
-  height: 35px;
-  background-image: url("../images/menu.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: #000;
-} */
-
 .burger .bar {
   width: 25px;
   height: 3px;
@@ -383,7 +370,6 @@ header button {
   bottom: 1px;
   font-weight: 400;
   font-size: 1.2rem;
-  /* color: var(--secondary-color); */
 }
 
 /* Trending Books */
@@ -630,11 +616,5 @@ footer ul a:hover {
     flex-direction: column;
     width: 100%;
   }
-
-}
-
-@media (max-width: 386px) {
-
-
 
 }

@@ -26,12 +26,17 @@ const renderUser = () => {
               </div>
 
               <a href="user.html" class="drop-down-link"><i class="fa-regular fa-user icon"></i><p>Profile</p><i class="fa-solid fa-angle-right"></i></a>
-              <a href="login.html" class="drop-down-link"><i class="fa-regular fa-arrow-right-from-bracket icon"></i><p>Logout</p><i class="fa-solid fa-angle-right"></i></a>
+              <span class="drop-down-link" onclick="logout()"><i class="fa-regular fa-arrow-right-from-bracket icon"></i><p>Logout</p><i class="fa-solid fa-angle-right"></i></span>
               `;
 
     dropContainer.innerHTML = template;
   }
 };
+
+const logout = () =>{
+  localStorage.removeItem("user");
+  window.location.replace("/");
+}
 
 // code block to add like
 const addLike = async (bookId, userId) => {

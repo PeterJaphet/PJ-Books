@@ -153,45 +153,6 @@ const checkUserExists = async (newUser) => {
   }
 };
 
-// const handleValidation = () => {
-//     const type = parseInt(Status.value.trim());
-//     const fields = [
-//       { name: "First Name", input: firstName },
-//       { name: "Last Name", input: lastName },
-//       { name: "Email", input: email, validator: isValidEmail },
-//       { name: "Date of Birth", input: dob },
-//       { name: "Password", input: password, validator: (value) => value.trim().length >= 8 },
-//       { name: "Re-Enter Password", input: rePassword, validator: (value) => value.trim() === password.value.trim() },
-//     ];
-
-//     let valid = true;
-//     let userDetailsCopy = { ...userDetails };
-
-//     fields.forEach((field) => {
-//       const { name, input, validator } = field;
-//       const value = input.value.trim();
-
-//       if (value === "") {
-//         setError(input, `${name} is required!`);
-//         valid = false;
-//       } else if (validator && !validator(value)) {
-//         setError(input, `Provide a valid ${name.toLowerCase()}.`);
-//         valid = false;
-//       } else {
-//         setSuccess(input, name);
-//         userDetailsCopy = { ...userDetailsCopy, [input.name]: input.value.trim() };
-//       }
-//     });
-
-//     if (valid) {
-//       userDetailsCopy = { ...userDetailsCopy, type };
-//       userDetailsCopy = { ...userDetailsCopy, password: encryptPassword(rePassword.value.trim()) };
-//       userDetails = userDetailsCopy;
-//     }
-
-//     return valid;
-//   };
-
 
 
 

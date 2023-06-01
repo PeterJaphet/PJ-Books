@@ -1,7 +1,9 @@
 const id = new URLSearchParams(window.location.search).get("id");
 const bookDetailContainer = document.querySelector(".book-details");
 const form = document.querySelector("#book-request");
+const formReport = document.querySelector("#report-book");
 const requestReason = document.querySelector(".reason");
+const reportReason = document.querySelector(".report-reason");
 const returnDate = document.querySelector(".return-date");
 const types = ["Public", "Private"];
 const dropContainer = document.querySelector(".drop-down");
@@ -9,6 +11,7 @@ let user = JSON.parse(localStorage.getItem("user"));
 
 const url = "http://localhost:3000";
 let requestDetails = {};
+let reportDetails = {};
 
 if (!user) {
   window.location.href = "login.html";
@@ -50,7 +53,7 @@ const renderBookDetails = async () => {
     .filter((borrow) => borrow.userId === userId)
     .flat();
 
-  console.log(borrow);
+  console.log(book.userId, user.id);
   const latestBorrow = filteredBorrow.splice(-1);
   console.log(latestBorrow.length);
   if (latestBorrow.length !== 0) {
@@ -68,10 +71,23 @@ const renderBookDetails = async () => {
     authorId: book.userId,
   };
 
+  reportDetails = {
+    ...reportDetails,
+    userId: userId,
+    bookId: book.id,
+    authorId: book.userId,
+  };
+
   template = `
     <div class="container grid">
     <div class="book-image">
     <img src="${book.uploadUrl}" alt="" class="book-img"/>
+    ${
+      book.userId !== user.id
+        ? "<span class='report-btn' onclick='handleReport()'><p>Report</p><i class='fa-solid fa-times'></i></span>"
+        : "<span></span> "
+    }
+    
     </div>
     <div class="book-detail">
     <div class="book-info">
@@ -257,6 +273,7 @@ const checkSave = (saves) => {
   }
 };
 
+//Borrow
 const borrowBtn = () => {
   const modal = document.querySelector(".modal.card.borrow");
   const overlay = document.querySelector("#overlay");
@@ -343,6 +360,70 @@ const handleValidation = () => {
     setSuccess(returnDate, "Return Date");
     requestDetails = { ...requestDetails, returnDate: rDate };
   }
+
+  return true;
+};
+
+//Add report
+const handleReportValidation = () => {
+  const report = reportReason.value.trim();
+  console.log(report);
+
+  if (report === "") {
+    setError(reportReason, "Complaint cannot be empty");
+    return false;
+  } else {
+    setSuccess(reportReason, "Complaint");
+    reportDetails = { ...reportDetails, reason: report };
+  }
+
+  return true;
+};
+
+const handleReport = () => {
+  const modal = document.querySelector(".modal.card.report");
+  const overlay = document.querySelector("#overlay");
+
+  modal.classList.add("active");
+  overlay.classList.add("active");
+  // Form Validation
+  formReport.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    if (handleReportValidation()) {
+      reportDetails = {
+        ...reportDetails,
+        date: new Date(),
+      };
+      console.log(reportDetails);
+      addReport(reportDetails)
+        .then((valid) => {
+          if (valid) {
+            alert("Book Reported!");
+            reportReason.value = "";
+          }
+          modal.classList.remove("active");
+          overlay.classList.remove("active");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  });
+  overlay.addEventListener("click", () => {
+    modal.classList.remove("active");
+    overlay.classList.remove("active");
+  });
+};
+
+//Add to Borrow
+
+const addReport = async (reportData) => {
+  fetch("http://localhost:3000/reports", {
+    method: "POST",
+    body: JSON.stringify(reportData),
+    headers: { "Content-Type": "application/json" },
+  });
 
   return true;
 };

@@ -73,7 +73,6 @@ const renderUserInfo = async () => {
   savedBooks.forEach((book) => {
     if (book.saves.includes(userId)) {
       saved += 1;
-      console.log("hi");
     }
   });
 
@@ -932,7 +931,8 @@ const renderSkeletonLoader = (container) => {
 const renderUserComponents = (load) => {
   renderUserInfo();
   renderFilter();
-  renderUserBooks("books", load);
+  user.type !== 1 ?
+  renderUserBooks("saved", load) :renderUserBooks("books", load);
 };
 
 window.addEventListener("DOMContentLoaded", () => renderUserComponents(true));

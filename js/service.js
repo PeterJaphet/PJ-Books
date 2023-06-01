@@ -3,7 +3,6 @@ const searchInput = document.querySelector("#search");
 const searchForm = document.querySelector("#form-search");
 const search = document.querySelector(".search-display");
 let dropDown = document.querySelector(".drop-down-wrap");
-// let user = JSON.parse(localStorage.getItem("user"));
 
 userBtn.addEventListener("click", ()=>{
   if(user){
