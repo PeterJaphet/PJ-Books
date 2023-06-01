@@ -22,15 +22,19 @@
         <div class="container flex">
           <a href="/"><div class="logo">PJ BOOKS</div></a>
           <div class="search-input shadow">
-            <form class="form-search">
+            <form class="form-search" id="form-search">
               <i class="fa-solid fa-magnifying-glass"></i>
               <input
                 type="text"
                 name="book-search"
                 class="search"
                 placeholder="Search"
+                id="search"
               />
             </form>
+            <div class="search-display">
+              <!-- Search input -->
+            </div>
           </div>
           <div class="user">
             <i class="fa-solid fa-user icon"></i>
@@ -70,6 +74,24 @@
             class="input-control return-date"
             placeholder=""
           />
+        </div>
+
+        <input type="submit" value="Request" class="btn my-1" />
+      </form>
+    </div>
+
+    <div class="modal card report">
+      <form id="book-request">
+        <h1 class="my-2 lg">Report Book</h1>
+
+        <div class="form-control">
+          <p class="error-msg">Reason</p>
+          <textarea
+            name="textarea"
+            class="input-control reason"
+            rows="3"
+            cols="30"
+          ></textarea>
         </div>
 
         <input type="submit" value="Request" class="btn my-1" />

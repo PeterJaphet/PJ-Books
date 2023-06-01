@@ -10,16 +10,16 @@ const likeBtn = document.querySelector(".like span");
 const dropContainer = document.querySelector(".drop-down");
 let user = JSON.parse(localStorage.getItem("user"));
 const types = ["Author", "Reader"];
-let userId=null;
+let userId = null;
 
 let faStatus;
-if(user){
- userId = user.id;}
+if (user) {
+  userId = user.id;
+}
 
 const renderUser = () => {
-if(user){
-
-  let template = `
+  if (user) {
+    let template = `
               <div class="drop-user-info">
                 <h3>${user.firstName + " " + user.lastName}</h3>
                 <span>${types[user.type - 1]}</span>
@@ -29,16 +29,15 @@ if(user){
               <a href="login.html" class="drop-down-link"><i class="fa-regular fa-arrow-right-from-bracket icon"></i><p>Logout</p><i class="fa-solid fa-angle-right"></i></a>
               `;
 
-  dropContainer.innerHTML = template;
-}
+    dropContainer.innerHTML = template;
+  }
 };
 
 // code block to add like
 const addLike = async (bookId, userId) => {
-
-if(userId===null){
-  window.location.replace('/login.html');
-}
+  if (userId === null) {
+    window.location.replace("/login.html");
+  }
   let updateLikes;
 
   const uri = `${url}/books/${bookId}`;
@@ -80,10 +79,9 @@ const checkLike = (likes) => {
 
 // code block to add save
 
-const addSave = async (bookId,userId) => {
-
-  if(userId===null){
-    window.location.replace('/login.html');
+const addSave = async (bookId, userId) => {
+  if (userId === null) {
+    window.location.replace("/login.html");
   }
   let updateSaves;
 
@@ -112,7 +110,7 @@ const addSave = async (bookId,userId) => {
       saves: [...updateSaves],
     }),
   });
- renderBooks(false);
+  renderBooks(false);
 };
 
 const checkSave = (saves) => {
@@ -124,10 +122,9 @@ const checkSave = (saves) => {
 };
 
 const renderLatest = async (load) => {
-
-  if(load===true){
-  for (let i = 0; i < 12; i++) {
-    latestBooks.innerHTML += `
+  if (load === true) {
+    for (let i = 0; i < 12; i++) {
+      latestBooks.innerHTML += `
     <div class="book-item shadow ">
     
     <div class="skeleton skeleton-image"></div>
@@ -144,7 +141,8 @@ const renderLatest = async (load) => {
       </div>
       </div>
       `;
-  }}
+    }
+  }
 
   const uri = `${url}/books?_sort=createdAt&_order=desc`;
 
@@ -192,10 +190,9 @@ const renderLatest = async (load) => {
 };
 
 const renderTrending = async (load) => {
-
-  if(load===true){
-  for (let i = 0; i < 12; i++) {
-    trendingBooks.innerHTML += `
+  if (load === true) {
+    for (let i = 0; i < 12; i++) {
+      trendingBooks.innerHTML += `
     <div class="book-item shadow ">
     
     <div class="skeleton skeleton-image"></div>
@@ -212,7 +209,8 @@ const renderTrending = async (load) => {
       </div>
       </div>
       `;
-  }}
+    }
+  }
   const uri = `${url}/books?_sort=saves.length&_order=desc`;
 
   const res = await fetch(uri);
@@ -220,50 +218,49 @@ const renderTrending = async (load) => {
   books = books.splice(0, 10);
   let template = "";
   if (books.length !== 0) {
-  books.forEach((book) => {
-    console.log(book.likes, userId);
-    template += `
+    books.forEach((book) => {
+      console.log(book.likes, userId);
+      template += `
         <div class="book-item shadow">
         <a href="/bookDetails.html?id=${book.id}"> <img src="${
-      book.uploadUrl
-    }" alt="" /></a>
+        book.uploadUrl
+      }" alt="" /></a>
         <div class="book-item__text text-center">
           <h3>${book.title}</h3>
           <p>${book.author}</p>
           <div class="activity flex">
             <div class="like">
               <span onclick="addLike(${book.id} ,${userId})">${
-      book.likes.includes(userId)
-        ? "<i class='fa-solid fa-heart'></i>"
-        : "<i class='fa-regular fa-heart'></i>"
-    }</span>
+        book.likes.includes(userId)
+          ? "<i class='fa-solid fa-heart'></i>"
+          : "<i class='fa-regular fa-heart'></i>"
+      }</span>
               <p>${book.likes.length}</p>
             </div>
             <span onclick="addSave(${book.id} ,${userId})">${
-      book.saves.includes(userId)
-        ? "<i class='fa-solid fa-bookmark'></i></span>"
-        : "<i class='fa-regular fa-bookmark'></i>"
-    }</span>
+        book.saves.includes(userId)
+          ? "<i class='fa-solid fa-bookmark'></i></span>"
+          : "<i class='fa-regular fa-bookmark'></i>"
+      }</span>
           </div>  
           </div>
           </div>
           `;
-  });
+    });
 
-  trendingBooks.innerHTML = template;
-
-} else {
-  trendingBooks.innerHTML = "";
-  empty[1].style.display = "flex";
-}
+    trendingBooks.innerHTML = template;
+  } else {
+    trendingBooks.innerHTML = "";
+    empty[1].style.display = "flex";
+  }
 };
 
 const renderRecommended = async (load) => {
   const uri = `${url}/books?_sort=likes.length&_order=desc`;
 
-  if(load===true){
-  for (let i = 0; i < 12; i++) {
-    recommendedBooks.innerHTML += `
+  if (load === true) {
+    for (let i = 0; i < 12; i++) {
+      recommendedBooks.innerHTML += `
     <div class="book-item shadow ">
     
     <div class="skeleton skeleton-image"></div>
@@ -280,7 +277,8 @@ const renderRecommended = async (load) => {
       </div>
       </div>
       `;
-  }}
+    }
+  }
 
   const res = await fetch(uri);
   let books = await res.json();
@@ -288,9 +286,8 @@ const renderRecommended = async (load) => {
   let template = "";
 
   if (books.length !== 0) {
-
-  books.forEach((book) => {
-    template += `
+    books.forEach((book) => {
+      template += `
         <div class="book-item shadow">
         <a href="/bookDetails.html?id=${book.id}">
         <img src="${book.uploadUrl}" alt="" /></a>
@@ -300,30 +297,31 @@ const renderRecommended = async (load) => {
           <div class="activity flex">
             <div class="like">
               <span onclick="addLike(${book.id} ,${userId})">${
-      book.likes.includes(userId)
-        ? "<i class='fa-solid fa-heart'></i>"
-        : "<i class='fa-regular fa-heart'></i>"
-    }</span>
+        book.likes.includes(userId)
+          ? "<i class='fa-solid fa-heart'></i>"
+          : "<i class='fa-regular fa-heart'></i>"
+      }</span>
               <p>${book.likes.length}</p>
             </div>
             <span onclick="addSave(${book.id} ,${userId})">${
-      book.saves.includes(userId)
-        ? "<i class='fa-solid fa-bookmark'></i></span>"
-        : "<i class='fa-regular fa-bookmark'></i>"
-    }</span>
+        book.saves.includes(userId)
+          ? "<i class='fa-solid fa-bookmark'></i></span>"
+          : "<i class='fa-regular fa-bookmark'></i>"
+      }</span>
           </div>  
           </div>
           </div>
           `;
-  });
+    });
 
-  recommendedBooks.innerHTML = template;}
-
-  else {
+    recommendedBooks.innerHTML = template;
+  } else {
     recommendedBooks.innerHTML = "";
     empty[2].style.display = "flex";
   }
 };
+
+
 
 const renderBooks = async (load) => {
   renderUser();

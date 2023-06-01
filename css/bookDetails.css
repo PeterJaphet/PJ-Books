@@ -140,7 +140,9 @@ header {
 
 @media only screen and (max-width: 479px) {
   .book-details {
-    height: 850px;
+    min-height: 900px;
+    padding: 2rem 0 0;
+    position: relative;
   }
 
   .btn {
@@ -154,10 +156,16 @@ header {
   .book-image {
 
     width: 100%;
-    padding: 0 10px;
+    /* padding: 0 10px; */
   }
   .book-details .book-img{
     width: 100%;
+  }
+
+  .book-detail{
+    padding:0;
+    width: 100%;
+    margin-top: -60px;
   }
 
   .home .search-input{

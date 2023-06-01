@@ -376,6 +376,14 @@ html{
   border: 1px solid white;
  }
 
+ 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 
 /* Skeleton loader */
 
@@ -438,6 +446,9 @@ html{
   
   .xl {
     font-size: 3rem;
+  }
+  .py-5{
+    padding: 2.5rem 0;
   }
 
 }

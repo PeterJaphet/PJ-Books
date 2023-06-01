@@ -19,45 +19,23 @@
     <div class="home">
       <header>
         <div class="container flex">
-          <a href="index.html" class="logo"><div >PJ BOOKS</div></a>
+          <a href="index.html" class="logo"><div>PJ BOOKS</div></a>
           <div class="search-input shadow">
-            <form class="form-search">
+            <form class="form-search" id="form-search">
               <i class="fa-solid fa-magnifying-glass"></i>
               <input
                 type="text"
                 name="book-search"
                 class="search"
                 placeholder="Search"
+                id="search"
               />
-            
             </form>
 
             <div class="search-display">
-              <div class="search-item">
-                <div class="search-details">
-                  <img src="./images/3.jpg" alt="" class="search-img">
-                  <div class="book-info">
-                    <h3>Legend Of the Seeker</h3>
-                    <p>PJ Jackson</p>
-                  </div>
-                </div>
-              
-              </div>
-                
-              <a href="bookDetails.html?">
-              <div class="search-item">
-                <div class="search-details">
-                  <img src="./images/3.jpg" alt="" class="search-img">
-                  <div class="book-info">
-                    <h3>Legend Of the Seeker</h3>
-                    <p>PJ Jackson</p>
-                  </div>
-                </div>
-              </a>
-                
-
-              </div>
+              <!-- Search input -->
             </div>
+            
           </div>
           <div class="user">
             <i class="fa-solid fa-user icon"></i>
@@ -67,13 +45,11 @@
             </div>
           </div>
 
-          
-          <span class="burger" onclick="toggleMenu()" >
-           
+          <span class="burger" onclick="toggleMenu()">
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
-        </span>
+          </span>
         </div>
       </header>
 
