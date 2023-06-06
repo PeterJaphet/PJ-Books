@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/custom.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/user.css" />
+    <title>User Profile</title>
+  </head>
+  <body>
+    <section class="img-cover">
+      <img src="./images/user-cover1.png" alt="" />
+    </section>
+
+    <section class="user-details py-2">
+      <div class="container grid">
+        <div class="user-info">
+          <!-- Inject User Info-->
+        </div>
+        <div class="user-books">
+          <div class="b flex">
+            <span class="filters btn"
+              ><span class="">Category </span
+              ><i class="fa-solid fa-caret-right"></i
+            ></span>
+            <div class="ul filter">
+              <span id="books" class="active">Books</span>
+              <span id="saved">Saved</span>
+              <span id="borrow">Borrowed</span>
+              <span id="request">Requests</span>
+            </div>
+            <div class="form-active btn btn-outline">Add Book</div>
+          </div>
+
+          <div class="books books-container grid-3 my-3">
+            <!-- Inject User Book -->
+          </div>
+
+          <div class="books books-request">
+            <!-- Inject User Book request-->
+          </div>
+
+          <div class="books empty-container"><!-- Inject empty books--></div>
+
+          <div class="modal card request"><!-- Inject pop ups--></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="modal card">
+      <form id="add-book">
+        <h1 class="my-2 lg">Add Book</h1>
+
+        <div class="form-control">
+          <p class="error-msg">Title</p>
+          <input
+            type="text"
+            name="title"
+            class="input-control title"
+            placeholder=""
+          />
+        </div>
+
+        <div class="form-control">
+          <p class="error-msg">Author's Name</p>
+          <input
+            type="text"
+            name="author-name"
+            class="input-control author-name"
+            placeholder=""
+          />
+        </div>
+        <div class="form-control-2">
+          <div class="form-control">
+            <p class="error-msg">Book Cover</p>
+            <input
+              type="file"
+              class="input-control image-cover"
+              accept=".jpg, .png, .jpeg"
+            />
+          </div>
+
+          <div class="form-control">
+            <p class="error-msg">Book File</p>
+            <input type="file" class="input-control book-file" accept=".pdf" />
+          </div>
+        </div>
+        <div class="form-control">
+          <p class="error-msg">Type</p>
+          <select name="degree" id="" class="input-control type">
+            <option value="1">Public</option>
+            <option value="2">Private</option>
+          </select>
+        </div>
+        <div class="form-control">
+          <p class="error-msg">Description</p>
+          <textarea
+            name="textarea"
+            class="input-control desc"
+            rows="5"
+            cols="30"
+          ></textarea>
+        </div>
+        <input type="submit" value="Add" class="btn my-1" />
+      </form>
+    </div>
+    <div id="overlay" class=""></div>
+
+    <script src="./js/user.js"></script>
+  </body>
+</html>

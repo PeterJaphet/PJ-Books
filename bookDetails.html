@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/custom.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/bookDetails.css" />
+    <title>User Profile</title>
+  </head>
+  <body>
+    <div class="home">
+      <header>
+        <div class="container flex">
+          <a href="/"><div class="logo">PJ BOOKS</div></a>
+          <div class="search-input shadow">
+            <form class="form-search" id="form-search">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input
+                type="text"
+                name="book-search"
+                class="search"
+                placeholder="Search"
+                id="search"
+              />
+            </form>
+            <div class="search-display">
+              <!-- Search input -->
+            </div>
+          </div>
+          <div class="user">
+            <i class="fa-solid fa-user icon"></i>
+          </div>
+
+          <div class="drop-down-wrap shadow">
+            <div class="drop-down"></div>
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <div class="book-details bg-light py-3">
+
+      <!-- Inject Book Details -->
+    </div>
+
+    <div class="modal card borrow">
+      <form id="book-request">
+        <h1 class="my-2 lg">Request Book</h1>
+
+        <div class="form-control">
+          <p class="error-msg">Reason</p>
+          <textarea
+            name="textarea"
+            class="input-control reason"
+            rows="3"
+            cols="30"
+          ></textarea>
+        </div>
+
+        <div class="form-control">
+          <p class="error-msg">Return Date</p>
+          <input
+            type="date"
+            name="return"
+            class="input-control return-date"
+            placeholder=""
+          />
+        </div>
+
+        <input type="submit" value="Request" class="btn my-1" />
+      </form>
+    </div>
+
+    <div class="modal card report">
+      <form id="report-book">
+        <h1 class="my-2 lg">Report Book</h1>
+
+        <div class="form-control">
+          <p class="error-msg">Complaint</p>
+          <textarea
+            name="textarea"
+            class="input-control report-reason"
+            rows="3"
+            cols="30"
+          ></textarea>
+        </div>
+
+        <input type="submit" value="Report" class="btn my-1" />
+      </form>
+    </div>
+
+    <footer class="bg-dark py-5">
+      <div class="container flex">
+        <div>
+          <a href="index.html"><h1 class="logo">PJ BOOKS</h1></a>
+          <p class="">PJ STUDIO &copy; 2023</p>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Latest</a></li>
+            <li><a href="#">Trending</a></li>
+            <li><a href="#">Recommended</a></li>
+          </ul>
+        </nav>
+        <div class="social">
+          <a href="#"><i class="fab fa-github fa-2x"></i></a>
+          <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+          <a href="#"><i class="fab fa-instagram fa-2x"></i></a>
+          <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <div id="overlay" class=""></div>
+    <script src="./js/service.js"></script>
+    <script src="./js/bookDetails.js"></script>
+  </body>
+</html>

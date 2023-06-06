@@ -1,0 +1,439 @@
+html{
+  scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1340px;
+    margin: 0 auto;
+    overflow: auto;
+    padding: 0 20px;
+  }
+  
+  .card {
+    background-color: #fff;
+    color: #333;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 12px;
+  }
+  
+
+  .btn {
+    display: inline-block;
+    padding: 10px 30px;
+    cursor: pointer;
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 16px;
+    transition: All 0.15s ease-in;
+    font-size: 16px;
+    font-family: inherit;
+    font-weight: bold;
+  }
+  
+  .btn-outline {
+    background-color: transparent;
+    border: 2px #000 solid;
+    color: #333;
+  }
+  
+  .btn:hover {
+    transform: scale(0.98);
+    opacity: 0.95;
+  }
+  
+  /* Backgrounds & colored buttons */
+  .bg-primary,
+  .btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+  }
+  
+  .bg-secondary,
+  .btn-secondary {
+    background-color: var(--secondary-color);
+    color: #fff;
+  }
+  
+  .bg-dark,
+  .btn-dark {
+    background-color: var(--dark-color);
+    color: #fff;
+  }
+  
+  .bg-light,
+  .btn-light {
+    background-color: var(--light-color);
+    color: #333;
+  }
+  
+  .bg-primary a,
+  .btn-primary a,
+  .bg-secondary a,
+  .btn-secondary a,
+  .bg-dark a,
+  .btn-dark a {
+    color: #fff;
+  }
+  
+  /* Text colors */
+  .text-primary {
+    color: var(--primary-color);
+  }
+  
+  .text-secondary {
+    color: var(--secondary-color);
+  }
+  
+  .text-dark {
+    color: var(--dark-color);
+  }
+  
+  .text-light {
+    color: var(--light-color);
+  }
+  
+  /* Text sizes */
+  .lead {
+    font-size: 20px;
+  }
+  
+  .sm {
+    font-size: 1rem;
+  }
+  
+  .md {
+    font-size: 2rem;
+  }
+  
+  .lg {
+    font-size: 3rem;
+  }
+  
+  .xl {
+    font-size: 4rem;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  /* Alert */
+  .alert {
+    background-color: var(--light-color);
+    padding: 10px 20px;
+    font-weight: bold;
+    margin: 15px 0;
+  }
+  
+  .alert i {
+    margin-right: 10px;
+  }
+  
+  .alert-success {
+    background-color: var(--success-color);
+    color: #fff;
+  }
+  
+  .alert-error {
+    background-color: var(--error-color);
+    color: #fff;
+  }
+
+  .shadow{
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
+    justify-content: space-between;
+    gap:10px;
+    display: grid;
+  }
+
+  .grid-5 {
+    /* grid-template-columns: repeat(5, 1fr); */
+    grid-template-columns: repeat(auto-fit, minmax(190px,1fr));
+    justify-content: space-between;
+    gap: 20px;
+    margin: auto;
+    
+  }
+  
+  /* Margin */
+  .my-1 {
+    margin: 1rem 0;
+  }
+  
+  .my-2 {
+    margin: 1.5rem 0;
+  }
+  
+  .my-3 {
+    margin: 2rem 0;
+  }
+  
+  .my-4 {
+    margin: 3rem 0;
+  }
+  
+  .my-5 {
+    margin: 4rem 0;
+  }
+  
+  .m-1 {
+    margin: 1rem;
+  }
+  
+  .m-2 {
+    margin: 1.5rem;
+  }
+  
+  .m-3 {
+    margin: 2rem;
+  }
+  
+  .m-4 {
+    margin: 3rem;
+  }
+  
+  .m-5 {
+    margin: 4rem;
+  }
+  
+  /* Padding */
+  .py-1 {
+    padding: 1rem 0;
+  }
+  
+  .py-2 {
+    padding: 1.5rem 0;
+  }
+  
+  .py-3 {
+    padding: 2rem 0;
+  }
+  
+  .py-4 {
+    padding: 3rem 0;
+  }
+  
+  .py-5 {
+    padding: 4rem 0;
+  }
+  
+  .p-1 {
+    padding: 1rem;
+  }
+  
+  .p-2 {
+    padding: 1.5rem;
+  }
+  
+  .p-3 {
+    padding: 2rem;
+  }
+  
+  .p-4 {
+    padding: 3rem;
+  }
+  
+  .p-5 {
+    padding: 4rem;
+  }
+
+
+  /* Forms */
+
+
+  .form-control {
+    display: flex;
+    flex-direction: column;
+    margin: 11px 0 0;
+    width: 100%;
+  }
+
+  .form-control-2 {
+    display: flex;
+    gap:10px
+  } 
+
+
+  /* Modal */
+
+  .modal {
+    z-index: 10;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    
+  }
+
+  .modal.active {
+    transform: translate(-50%, -50%) scale(1);
+    transition: 400ms ease-in-out;
+  }
+
+  .input-control {
+    outline: none;
+    padding: 8px 12px;
+    font-family: inherit;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #c9c9c7;
+    width: 100%;
+  }
+
+  #overlay.active {
+    opacity: 1;
+    pointer-events: all;
+    transition: 400ms ease-in-out;
+  }
+
+  #overlay {
+    position: fixed;
+    background-color: rgb(0, 0, 0, 0.4);
+   
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  /* forms */
+
+.input-control:focus {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.input-control.error {
+  border: 1px solid red;
+  box-shadow: -2px 1px 7px 2px rgba(247, 103, 103, 0.1);
+  -webkit-box-shadow: -2px 1px 7px 2px rgba(247, 103, 103, 0.1);
+  -moz-box-shadow: -2px 1px 7px 2px rgba(247, 103, 103, 0.1);
+}
+
+.error-msg {
+  font-size: 18px;
+  font-weight: bold;
+  opacity: 0.9;
+}
+.error-msg.error {
+  color: red;
+  font-size: 15px;
+}
+
+.approved{
+    color: rgb(85, 138, 5);
+    text-transform: capitalize;
+    flex:1;
+}
+
+.pending {
+  color: rgb(244, 248, 0);
+  text-transform: capitalize;
+  flex:1;
+}
+
+.rejected{
+  color: red;
+  text-transform: capitalize;
+  flex:1;
+}
+
+.empty{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+  color:#815f5f;
+
+ }
+ 
+ iframe{
+  border: 1px solid white;
+ }
+
+ 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
+@media only screen and (min-width: 1024px) and (max-width: 1199px){
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px){
+
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px){
+  
+.form-control-2 {
+
+  flex-direction: column;
+  gap: 0px;
+}
+}
+
+@media only screen and (min-width: 0px) and (max-width: 479px){
+
+  .form-control-2 {
+
+    flex-direction: column;
+    gap: 0px;
+  }
+
+  .lead {
+    font-size: 16px;
+  }
+  
+  .sm {
+    font-size: .6rem;
+  }
+  
+  .md {
+    font-size: 1.5rem;
+  }
+  
+  .lg {
+    font-size: 2rem;
+  }
+  
+  .xl {
+    font-size: 3rem;
+  }
+  .py-5{
+    padding: 2.5rem 0;
+  }
+
+}
+
+
+

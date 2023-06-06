@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/custom.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title>PJ BOOKS</title>
+  </head>
+  <body>
+    <div class="home">
+      <header>
+        <div class="container flex">
+          <a href="index.html" class="logo"><div>PJ BOOKS</div></a>
+          <div class="search-input shadow">
+            <form class="form-search" id="form-search">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input
+                type="text"
+                name="book-search"
+                class="search"
+                placeholder="Search"
+                id="search"
+              />
+            </form>
+
+            <div class="search-display">
+              <!-- Search input -->
+            </div>
+            
+          </div>
+          <div class="user">
+            <i class="fa-solid fa-user icon"></i>
+
+            <div class="drop-down-wrap shadow">
+              <div class="drop-down"></div>
+            </div>
+          </div>
+
+          <span class="burger" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </span>
+        </div>
+      </header>
+
+      <nav class="navbar">
+        <ul class="nav-items flex">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#latest">Latest</a></li>
+          <li><a href="#trending">Trending</a></li>
+          <li><a href="#recommended">Recommended</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Latest Books -->
+    <section class="latest bg-light" id="latest">
+      <div class="container">
+        <h1 class="books__heading my-3">Latest Books</h1>
+        <div class="empty">
+          <span class="md">No Book Uploaded!</span>
+        </div>
+        <div class="books grid grid-5 py-1">
+          <!-- Latest books Injection -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Trending books -->
+    <section class="trending bg-light" id="trending">
+      <div class="container">
+        <h1 class="books__heading my-3">Trending Books</h1>
+        <div class="empty">
+          <span class="md">No Book Uploaded!</span>
+        </div>
+        <div class="books grid grid-5 py-1">
+          <!-- <div class="loader">
+
+          </div> -->
+          <!-- Trending books Injection -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Recommended -->
+    <section class="recommended bg-light" id="recommended">
+      <div class="container">
+        <h1 class="books__heading my-3">Recommended Books</h1>
+        <div class="empty">
+          <span class="md">No Book Uploaded!</span>
+        </div>
+        <div class="books grid grid-5 py-1">
+          <!-- Recommended books Injection -->
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-dark py-4">
+      <div class="container flex">
+        <div>
+          <a href="index.html"><h1 class="logo">PJ BOOKS</h1></a>
+          <p class="">PJ STUDIO &copy; 2023</p>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Latest</a></li>
+            <li><a href="#">Trending</a></li>
+            <li><a href="#">Recommended</a></li>
+          </ul>
+        </nav>
+        <div class="social">
+          <a href="#"><i class="fab fa-github fa-2x"></i></a>
+          <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+          <a href="#"><i class="fab fa-instagram fa-2x"></i></a>
+          <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./js/service.js"></script>
+    <script src="./js/index.js"></script>
+  </body>
+</html>
